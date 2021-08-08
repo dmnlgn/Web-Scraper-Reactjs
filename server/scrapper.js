@@ -4,27 +4,13 @@ const _ = require('lodash');
 const cors = require('cors');
 axios.defaults.baseURL = 'http://localhost:8080';
 
-// Import helper functions
-const {
-    compose,
-    composeAsync,
-    extractNumber,
-    enforceHttpsUrl,
-    fetchHtmlFromUrl,
-    extractFromElems,
-    fromPairsToObject,
-    fetchElemInnerText,
-    fetchElemAttribute,
-    extractUrlAttribute
-  } = require("./helpers");
-
 const test = async () => {
-    console.log("pokemons");
+    //console.log("pokemons");
 
     const pokemonSite = 'https://pokemon.gameinfo.io/';
     const pokemon = [];
 
-    axios(pokemonSite)
+    const response = axios.get(pokemonSite)
         .then((response) => {
             let $ = cheerio.load(response.data);
             const statusTable = $('.pokemon-list > .family > .gen');
@@ -35,12 +21,18 @@ const test = async () => {
                     name: pokemonName,
                 });
             });
-            console.log(pokemon);
-            return response;
+            //console.log(pokemon);
+            return pokemon;
         })
         .catch((err) => {
             console.log(err);
         });
+
+        return response;
 };
 
-module.exports = test();
+test();
+
+module.exports = { 
+    test
+};
