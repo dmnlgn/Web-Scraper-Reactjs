@@ -72,7 +72,7 @@ const Home = () => {
     { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
   ];
 
-
+console.log(post.length);
   const classes = useStyles();
 
   return (
@@ -112,23 +112,6 @@ const Home = () => {
       </Paper>
     </div>
   )
-
-  if (post.length && post !== 0) {
-    return (
-      post.map((item, index) => {
-        console.log(index)
-        return (
-          <li key={index}>
-            <p>{item.name}</p>
-          </li>
-        )
-      })
-    )
-  } else {
-    return ("brak danych");
-  }
-
-
 };
 
 export default Home;
