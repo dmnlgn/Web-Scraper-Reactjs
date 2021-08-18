@@ -25,7 +25,7 @@ router.get('/pokemon', async (req, res) => {
 app.post('/pokemon', async (req, res) => {
   console.log(req.body);
   const pokemon = await scrapper.test(req.body);
-  console.log({pokemon})
+  //console.log({pokemon})
   res.send('succes');
 })
 
