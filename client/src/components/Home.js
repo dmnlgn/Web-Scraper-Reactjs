@@ -30,20 +30,6 @@ const Home = () => {
 
   useEffect(() => getRepo(), []);
 
-  // if (post.length && post !== 0) {
-  //   return (
-  //     post.map((item, index) => {
-  //       console.log(index)
-  //       return (
-  //         <li key={index}>
-  //           <p>{item.name}</p>
-  //         </li>
-  //       )
-  //     })
-  //   )
-  // } else {
-  //   return ("brak danych");
-  // }
   const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
@@ -69,6 +55,7 @@ const Home = () => {
   }));
 
   const headCells = [
+    { id: 'id', numeric: false, disablePadding: true, label: 'id' },
     { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
   ];
 
@@ -82,17 +69,22 @@ console.log(post.length);
             className={classes.table}
             aria-labelledby="tableTitle"
             aria-label="enhanced table">
-          <Table>
+          <Table  
+            className={classes.table} 
+            size="small" 
+            aria-label="a dense table">
             <TableHead>
-              {headCells.map((headCell) => (
+              <TableRow>
+              {headCells.map((headCell, index) => (
                 <TableCell
-                  key={headCell.id}
+                  key={index}
                   align={headCell.numeric ? 'right' : 'left'}
                   padding={headCell.disablePadding ? 'none' : 'normal'}>
                   {headCell.label}
                 </TableCell>
                 ))
               }
+              </TableRow>
             </TableHead>
             <TableBody>
               {post.length && post !== 0 ? (
@@ -100,6 +92,7 @@ console.log(post.length);
                   console.log(index)
                   return (
                     <TableRow key={index}>
+                      <TableCell align="left">{index}</TableCell>
                       <TableCell align="left">{item.name}</TableCell>
                     </TableRow>
                   )
