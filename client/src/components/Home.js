@@ -9,7 +9,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 
 const Home = () => {
@@ -32,10 +32,13 @@ const Home = () => {
 
   const useStyles = makeStyles((theme) => ({
     root: {
+      justifyContent: 'center',
+      display: 'grid',
+      alignItems: 'baseline',
       width: '100%',
     },
     paper: {
-      width: '100%',
+      // width: '90%',
       marginBottom: theme.spacing(2),
     },
     table: {
@@ -52,7 +55,30 @@ const Home = () => {
       top: 20,
       width: 1,
     },
+    backgroundHead: {
+      color: '#ffffff!important',
+      backgroundColor: '#333',
+    }
   }));
+
+  const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    body: {
+      fontSize: 14,
+    },
+  }))(TableCell);
+
+  const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
 
   const headCells = [
     { id: 'id', numeric: false, disablePadding: true, label: 'id' },
@@ -74,14 +100,13 @@ console.log(post.length);
             size="small" 
             aria-label="a dense table">
             <TableHead>
-              <TableRow>
+              <TableRow className={classes.backgroundHead}>
               {headCells.map((headCell, index) => (
-                <TableCell
+                <StyledTableCell
                   key={index}
-                  align={headCell.numeric ? 'right' : 'left'}
-                  padding={headCell.disablePadding ? 'none' : 'normal'}>
+                  align={headCell.numeric ? 'right' : 'left'}>
                   {headCell.label}
-                </TableCell>
+                </StyledTableCell>
                 ))
               }
               </TableRow>
@@ -91,10 +116,10 @@ console.log(post.length);
                   post.map((item, index) => {
                   console.log(index)
                   return (
-                    <TableRow key={index}>
+                    <StyledTableRow key={index}>
                       <TableCell align="left">{index}</TableCell>
                       <TableCell align="left">{item.name}</TableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   )
                 })
                 ) : (console.log("no data"))
