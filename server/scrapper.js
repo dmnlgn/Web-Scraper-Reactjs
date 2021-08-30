@@ -26,7 +26,7 @@ const test = async () => {
             console.log(err);
         });
 
-        return response;
+    return response;
 };
 
 module.exports = { 

@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 8080;
 const bodyParser = require('body-parser');
 const scrapper = require('./scrapper');
 const tshirts = require('./scraped_pages/fashion/page_one/fragments/tshirts.js');
+const hoodies = require('./scraped_pages/fashion/page_one/fragments/hoodies.js');
 
+const clothes = require('./scraped_pages/fashion/page_one/connection.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,10 +30,19 @@ router.get('/tshirt', async (req, res) => {
   res.send({tshirtpage});
 })
 
+router.get('/hoodies', async (req, res) => {
+  const hoodiepage = await hoodies.scraped(req.body);
+  res.send({hoodiepage});
+})
+
+router.get('/clothes', async (req, res) => {
+  const clothesPage = await clothes.connection(req.body);
+  res.send({clothesPage});
+})
+
 app.post('/pokemon', async (req, res) => {
   console.log(req.body);
   const pokemon = await scrapper.test(req.body);
-  //console.log({pokemon})
   res.send('succes');
 })
 

@@ -3,9 +3,9 @@ const cheerio = require('cheerio');
 const {stringify} = require('flatted');
 
 const scraped = async () => {
-    const API = 'https://www2.hm.com/pl_pl/on/produkty/t-shirty-i-podkoszulki.html';
-    const tshirt = [];
-    const tshirt_color = [];
+    const API = 'https://www2.hm.com/pl_pl/on/produkty/bluzy-klasyczne-i-z-kapturem.html';
+    const hoodie = [];
+    const hoodie_color = [];
 
     const response = axios.get(API)
         .then((response) => {
@@ -13,27 +13,28 @@ const scraped = async () => {
             const stack = $('.products-listing > .product-item > .hm-product-item');
             stack.each( (i, el) => {
                 if(i) {
-                    const tshirttName = $(el).find('.item-details > .item-heading > a').text();
-                    const tshirtPrice = $(el).find('.item-details > .item-price > span').text();
+                    const hoodieName = $(el).find('.item-details > .item-heading > a').text();
+                    const hoodiePrice = $(el).find('.item-details > .item-price > span').text();
                     $(el).find('.item-details > .list-swatches > .item > a').each( (i, el) => {
-                        tshirt_color.push ({
+                        hoodie_color.push ({
                             color: $(el).text().trim().split('/')
                         })
                     })
-                    stringify(tshirt_color);
-                    tshirt.push({
-                        name: tshirttName,
-                        price: tshirtPrice,
-                        color: tshirt_color[i]
+                    stringify(hoodie_color);
+                    hoodie.push({
+                        name: hoodieName,
+                        price: hoodiePrice,
+                        color: hoodie_color[i]
                     })
+                    console.log(hoodie);
                 }
             });
-            return tshirt;
+            return hoodie;
         })
         .catch((err) => {
             console.log(err);
         });
-        return response;
+    return response;
 };
 
 module.exports = { 
