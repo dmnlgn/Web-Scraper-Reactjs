@@ -1,8 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const _ = require('lodash');
-const cors = require('cors');
-axios.defaults.baseURL = 'http://localhost:8080';
+
 
 const test = async () => {
     //console.log("pokemons");
@@ -30,8 +28,6 @@ const test = async () => {
 
         return response;
 };
-
-test();
 
 module.exports = { 
     test

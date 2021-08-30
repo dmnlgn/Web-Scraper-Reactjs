@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 8080;
 
 const bodyParser = require('body-parser');
 const scrapper = require('./scrapper');
+const tshirts = require('./scraped_pages/fashion/page_one/fragments/tshirts.js');
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -17,9 +19,13 @@ app.use(function(req, res, next) {
 });
 
 router.get('/pokemon', async (req, res) => {
-  //res.send('test');
   const pokemon = await scrapper.test(req.body);
   res.send({pokemon});
+})
+
+router.get('/tshirt', async (req, res) => {
+  const tshirtpage = await tshirts.scraped(req.body);
+  res.send({tshirtpage});
 })
 
 app.post('/pokemon', async (req, res) => {
