@@ -3,9 +3,9 @@ const cheerio = require('cheerio');
 const {stringify} = require('flatted');
 
 const scraped = async () => {
-    const API = 'https://www2.hm.com/pl_pl/on/produkty/t-shirty-i-podkoszulki.html';
-    const tshirt = [];
-    const tshirt_color = [];
+    const API = 'https://www2.hm.com/pl_pl/on/produkty/t-shirty-i-podkoszulki.html?sort=stock&image-size=small&image=model&offset=0&page-size=500';
+    const data = [];
+    const data_color = [];
 
     const response = axios.get(API)
         .then((response) => {
@@ -13,22 +13,22 @@ const scraped = async () => {
             const stack = $('.products-listing > .product-item > .hm-product-item');
             stack.each( (i, el) => {
                 if(i) {
-                    const tshirttName = $(el).find('.item-details > .item-heading > a').text();
-                    const tshirtPrice = $(el).find('.item-details > .item-price > span').text();
+                    const Name = $(el).find('.item-details > .item-heading > a').text();
+                    const Price = $(el).find('.item-details > .item-price > span').text();
                     $(el).find('.item-details > .list-swatches > .item > a').each( (i, el) => {
-                        tshirt_color.push ({
+                        data_color.push ({
                             color: $(el).text().trim().split('/')
                         })
                     })
-                    stringify(tshirt_color);
-                    tshirt.push({
-                        name: tshirttName,
-                        price: tshirtPrice,
-                        color: tshirt_color[i]
+                    stringify(data_color);
+                    data.push({
+                        name: Name,
+                        price: Price,
+                        color: data_color[i]
                     })
                 }
             });
-            return tshirt;
+            return data;
         })
         .catch((err) => {
             console.log(err);
