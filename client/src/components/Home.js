@@ -21,20 +21,7 @@ const Home = () => {
 
   return (
     <div>
-    <table>
-      {post.length && post !== 0 ? (
-                  post.map((item, index) => {
-                  console.log(index)
-                  return (
-                    <tr key={index}>
-                      <td align="left">{index}</td>
-                      <td align="left">{item.name}</td>
-                    </tr>
-                  )
-                })
-                ) : (console.log("no data"))
-              }
-      </table>
+      <h1>Strona główna</h1>
     </div>
   )
 };
