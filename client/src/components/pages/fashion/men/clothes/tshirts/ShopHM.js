@@ -23,17 +23,17 @@ const ShopHM = () => {
     <div>
     <table>
       {post.length && post !== 0 ? (
-                  post.map((item, index) => {
-                  console.log(index)
-                  return (
-                    <tr key={index}>
-                      <td align="left">{index}</td>
-                      <td align="left">{item.name}</td>
-                    </tr>
-                  )
-                })
-                ) : (console.log("no data"))
-              }
+          post.map((item, index) => {
+          console.log(index)
+          return (
+            <tr key={index}>
+              <td align="left">{index}</td>
+              <td align="left">{item.name}</td>
+            </tr>
+          )
+        })
+        ) : (console.log("no data"))
+      }
       </table>
     </div>
   )

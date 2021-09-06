@@ -28,7 +28,7 @@ const scraped = async () => {
                     })
                 }
             });
-            console.log(data);
+            // console.log(data);
             return data;
         })
         .catch((err) => {
@@ -36,8 +36,6 @@ const scraped = async () => {
         });
     return response;
 };
-
-scraped();
 
 module.exports = { 
     scraped
