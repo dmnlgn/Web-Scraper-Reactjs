@@ -5,7 +5,6 @@ const router = express.Router();
 const PORT = process.env.PORT || 8080;
 
 const bodyParser = require('body-parser');
-const scrapper = require('./scrapper');
 const shopOne = require('./scraped_pages/fashion/page_one/connection.js');
 const shopTwo = require('./scraped_pages/fashion/page_two/connection.js');
 
