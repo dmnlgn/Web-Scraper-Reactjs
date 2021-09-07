@@ -6,7 +6,6 @@ const scraped = async () => {
     const API = 'https://www2.hm.com/pl_pl/on/produkty/spodnie.html?sort=stock&image-size=small&image=model&offset=0&page-size=500';
     const data = [];
     const data_color = [];
-
     const response = axios.get(API)
         .then((response) => {
             let $ = cheerio.load(response.data);
@@ -28,7 +27,6 @@ const scraped = async () => {
                     })
                 }
             });
-            // console.log(data);
             return data;
         })
         .catch((err) => {

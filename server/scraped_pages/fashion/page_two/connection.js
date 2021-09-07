@@ -12,15 +12,12 @@ const connection = async () => {
     try {
         // clothes = {...tshirtPage, ...hoodiesPage,...pantsPage,...jeansPage};
         clothes = {...tshirtPage};
-        console.log(clothes);
         return clothes;
     }
     catch (e) {console.error(e);}
     
     return clothes;
 }
-
-connection();
 
 module.exports = { 
     connection
