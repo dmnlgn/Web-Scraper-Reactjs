@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ShopHM = () => {
+const ShopAnsw = () => {
   const [post, setPost] = useState([]);
 
-  const baseURL = 'http://localhost:8080/clothes';
+  const baseURL = 'http://localhost:8080/shop_two';
 
   const getRepo = () => {
     axios.get(baseURL)
@@ -29,6 +29,8 @@ const ShopHM = () => {
             <tr key={index}>
               <td align="left">{index}</td>
               <td align="left">{item.name}</td>
+              <td align="left">{item.price}</td>
+              <td align="left">{item.price_promo}</td>
             </tr>
           )
         })
@@ -39,4 +41,4 @@ const ShopHM = () => {
   )
 };
 
-export default ShopHM;
+export default ShopAnsw;
